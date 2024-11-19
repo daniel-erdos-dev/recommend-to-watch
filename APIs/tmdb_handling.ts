@@ -5,10 +5,7 @@ import "dotenv/config";
 // Passwordless credential
 const credential = new DefaultAzureCredential();
 
-// Get Key Vault name from environment variables
-// such as `https://${keyVaultName}.vault.azure.net`
-const keyVaultUrl = process.env.KEY_VAULT_URL;
-if (!keyVaultUrl) throw new Error("KEY_VAULT_URL is empty");
+const keyVaultUrl = "https://rtw-tmdb.vault.azure.net/";
 
 const client = new SecretClient(keyVaultUrl, credential);
 
