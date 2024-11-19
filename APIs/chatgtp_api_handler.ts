@@ -1,19 +1,9 @@
 import OpenAI from "openai";
-import { SecretClient } from "@azure/keyvault-secrets";
-import { InteractiveBrowserCredential } from "@azure/identity";
 import "dotenv/config";
 
-// Passwordless credential
-const credential = new InteractiveBrowserCredential({});
-
-const keyVaultUrl = "https://rtw-cgpt.vault.azure.net/";
-
-const client = new SecretClient(keyVaultUrl, credential);
-
 export async function getRecommendationsFromApi(title: string, year: string) {
-  const getSecretResult = await client.getSecret("cgpt-apikey");
-
-  const apikey = getSecretResult.value;
+  const apikey = process.env.NEXT_PUBLIC_CGPT_APIKEY;
+  console.log(apikey);
 
   const openai = new OpenAI({
     apiKey: apikey,

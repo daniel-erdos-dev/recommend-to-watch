@@ -1,18 +1,7 @@
-import { SecretClient } from "@azure/keyvault-secrets";
-import { InteractiveBrowserCredential } from "@azure/identity";
 import "dotenv/config";
 
-// Passwordless credential
-const credential = new InteractiveBrowserCredential({});
-
-const keyVaultUrl = "https://rtw-tmdb.vault.azure.net/";
-
-const client = new SecretClient(keyVaultUrl, credential);
-
 async function provideOptions() {
-  const getSecretResult = await client.getSecret("tmdb-apikey");
-
-  const apikey = getSecretResult.value;
+  const apikey = process.env.NEXT_PUBLIC_TMDB_APIKEY;
 
   const options = {
     method: "GET",
@@ -36,6 +25,7 @@ export async function getMovieDetailsFromApi(
     : `https://api.themoviedb.org/3/search/movie?query=${title}`;
   try {
     const options = await provideOptions();
+    console.log(options.headers.Authorization);
     const response = await fetch(url, options);
     const data = await response.json();
 
