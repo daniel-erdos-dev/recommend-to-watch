@@ -1,7 +1,7 @@
 "use client";
 
-import RecommendedMovie from "../../commonComponents/RecommendedMovie";
-import Spinner from "../../commonComponents/Spinner";
+import RecommendedMovie from "../commonComponents/RecommendedMovie";
+import Spinner from "../commonComponents/Spinner";
 import { useAppSelector } from "@/redux/hooks";
 
 // Show the movies recommended by ChatGPT
