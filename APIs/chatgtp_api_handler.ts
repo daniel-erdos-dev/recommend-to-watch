@@ -1,10 +1,10 @@
 import OpenAI from "openai";
 import { SecretClient } from "@azure/keyvault-secrets";
-import { DefaultAzureCredential } from "@azure/identity";
+import { InteractiveBrowserCredential } from "@azure/identity";
 import "dotenv/config";
 
 // Passwordless credential
-const credential = new DefaultAzureCredential();
+const credential = new InteractiveBrowserCredential({});
 
 const keyVaultUrl = "https://rtw-cgpt.vault.azure.net/";
 
