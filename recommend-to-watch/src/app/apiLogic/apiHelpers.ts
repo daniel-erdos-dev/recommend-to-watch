@@ -4,6 +4,7 @@ import * as tmdbApi from "../../../../APIs/tmdb_handling";
 export async function getRecommendations(
   title: string,
   release_date: string
+  /* eslint-disable @typescript-eslint/no-explicit-any */
 ): Promise<any> {
   try {
     const recommendations = await getRecommendationsFromApi(
@@ -17,7 +18,7 @@ export async function getRecommendations(
         recommendations.indexOf("]") + 1
       );
 
-      let parsedRecommendations: [{ title: string; year: number }] =
+      const parsedRecommendations: [{ title: string; year: number }] =
         JSON.parse(validJsonPart);
 
       return parsedRecommendations;
@@ -32,6 +33,7 @@ export async function getRecommendations(
 export async function getProviders(
   movie_id: number,
   country_code: string
+  /* eslint-disable @typescript-eslint/no-explicit-any */
 ): Promise<any> {
   try {
     const providers = await tmdbApi.getProviderInfo(movie_id, country_code);
@@ -47,6 +49,7 @@ export async function getProviders(
 export async function getMovieDetails(
   title: string,
   year?: number
+  /* eslint-disable @typescript-eslint/no-explicit-any */
 ): Promise<any> {
   try {
     const movie = await tmdbApi.getMovieDetailsFromApi(title, year);

@@ -77,35 +77,8 @@ type AllProviderProps = {
   ];
 };
 
-type StreamingProps = {
-  flatrate: [
-    {
-      logo_path: string;
-      provider_name: string;
-    }
-  ];
-};
-
-type RentingProps = {
-  rent: [
-    {
-      logo_path: string;
-      provider_name: string;
-    }
-  ];
-};
-
 type ProviderProps = {
   providers: [
-    {
-      logo_path: string;
-      provider_name: string;
-    }
-  ];
-};
-
-type BuyProps = {
-  buy: [
     {
       logo_path: string;
       provider_name: string;
