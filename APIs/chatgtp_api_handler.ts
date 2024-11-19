@@ -3,7 +3,6 @@ import "dotenv/config";
 
 export async function getRecommendationsFromApi(title: string, year: string) {
   const apikey = process.env.NEXT_PUBLIC_CGPT_APIKEY;
-  console.log(apikey);
 
   const openai = new OpenAI({
     apiKey: apikey,

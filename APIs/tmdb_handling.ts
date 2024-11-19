@@ -25,7 +25,6 @@ export async function getMovieDetailsFromApi(
     : `https://api.themoviedb.org/3/search/movie?query=${title}`;
   try {
     const options = await provideOptions();
-    console.log(options.headers.Authorization);
     const response = await fetch(url, options);
     const data = await response.json();
 
