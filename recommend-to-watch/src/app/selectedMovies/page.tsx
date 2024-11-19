@@ -1,10 +1,10 @@
 "use client";
 
-import MultipleMovies from "@/commonComponents/multipleMovies";
+import MultipleMovies from "@/commonComponents/MultipleMovies";
 import Spinner from "@/commonComponents/Spinner";
 import { useAppSelector } from "@/redux/hooks";
 
-export default function SelectedMovie() {
+const SelectedMoviesPage = () => {
   const movieList = useAppSelector((state) => state.movies.movieList);
   const apiCallInProgress = useAppSelector(
     (state) => state.api.apiCallsInProgress
@@ -21,4 +21,6 @@ export default function SelectedMovie() {
       </main>
     </div>
   );
-}
+};
+
+export default SelectedMoviesPage;

@@ -4,9 +4,15 @@ import "dotenv/config";
 export async function getRecommendationsFromApi(title: string, year: string) {
   const apikey = process.env.NEXT_PUBLIC_CGPT_APIKEY;
 
-  const openai = new OpenAI({
-    apiKey: apikey,
-  });
+  const openai =
+    document.location.hostname === "localhost"
+      ? new OpenAI({
+          apiKey: apikey,
+          dangerouslyAllowBrowser: true,
+        })
+      : new OpenAI({
+          apiKey: apikey,
+        });
 
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",

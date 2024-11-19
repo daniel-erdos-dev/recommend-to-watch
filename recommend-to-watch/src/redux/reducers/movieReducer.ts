@@ -19,13 +19,22 @@ interface MovieState {
     title: string;
   };
   searchMovieTitle: string;
-  recommendedMovies: [
+  recommendedMoviesCgpt: [
     {
       title: string;
       year: number;
     }
   ];
-  selectedRecommendedMovie: {
+  recommendedMoviesTmdb: [
+    {
+      id: number;
+      overview: string;
+      poster_path: string;
+      release_date: string;
+      title: string;
+    }
+  ];
+  selectedRecommendedMovieCgpt: {
     title: string;
     year: number;
   };
@@ -50,8 +59,9 @@ const initialState: MovieState = {
   movieList: [emptyMovie],
   selectedMovie: emptyMovie,
   searchMovieTitle: "",
-  recommendedMovies: [{ title: "", year: 0 }],
-  selectedRecommendedMovie: { title: "", year: 0 },
+  recommendedMoviesCgpt: [{ title: "", year: 0 }],
+  recommendedMoviesTmdb: [emptyMovie],
+  selectedRecommendedMovieCgpt: { title: "", year: 0 },
   recommendedMovieData: emptyMovie,
 };
 
@@ -90,11 +100,27 @@ export const movieSlice = createSlice({
     setSearchMovieTitle: (state, action: PayloadAction<string>) => {
       state.searchMovieTitle = action.payload;
     },
-    getRecommendedMovies: (
+    getRecommendedMoviesFromCgpt: (
       state,
       action: PayloadAction<[{ title: string; year: number }]>
     ) => {
-      state.recommendedMovies = action.payload;
+      state.recommendedMoviesCgpt = action.payload;
+    },
+    getRecommendedMoviesFromTmdb: (
+      state,
+      action: PayloadAction<
+        [
+          {
+            id: number;
+            overview: string;
+            poster_path: string;
+            release_date: string;
+            title: string;
+          }
+        ]
+      >
+    ) => {
+      state.recommendedMoviesTmdb = action.payload;
     },
     loadRecommendedMovieData: (
       state,
@@ -115,7 +141,7 @@ export const movieSlice = createSlice({
         year: number;
       }>
     ) => {
-      state.selectedRecommendedMovie = action.payload;
+      state.selectedRecommendedMovieCgpt = action.payload;
     },
   },
 });
@@ -124,7 +150,8 @@ export const {
   loadMovies,
   selectMovie,
   setSearchMovieTitle,
-  getRecommendedMovies,
+  getRecommendedMoviesFromCgpt,
+  getRecommendedMoviesFromTmdb,
   loadRecommendedMovieData,
   selectRecommendedMovie,
 } = movieSlice.actions;
@@ -134,11 +161,11 @@ export const selectSelectedMovie = (state: RootState) =>
   state.movies.selectedMovie;
 export const selectSearchMovieTitle = (state: RootState) =>
   state.movies.searchMovieTitle;
-export const selectRecommendedMovies = (state: RootState) =>
-  state.movies.recommendedMovies;
+export const selectRecommendedMoviesCgpt = (state: RootState) =>
+  state.movies.recommendedMoviesCgpt;
 export const selectRecommendedMovieData = (state: RootState) =>
   state.movies.recommendedMovieData;
-export const selectSelectedRecommendedMovie = (state: RootState) =>
-  state.movies.selectedRecommendedMovie;
+export const selectSelectedRecommendedMovieCgpt = (state: RootState) =>
+  state.movies.selectedRecommendedMovieCgpt;
 
 export default movieSlice.reducer;

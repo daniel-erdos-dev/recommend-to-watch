@@ -5,9 +5,13 @@ import Spinner from "@/commonComponents/Spinner";
 import { useAppSelector } from "@/redux/hooks";
 
 // Show the movies recommended by ChatGPT
-const RecommendedPage = () => {
-  const recommendedMovies = useAppSelector(
-    (state) => state.movies.recommendedMovies
+const RecommendedMoviesPage = () => {
+  const isLocalhost = document.location.hostname === "localhost";
+  const recommendedMoviesCgpt = useAppSelector(
+    (state) => state.movies.recommendedMoviesCgpt
+  );
+  const recommendedMoviesTmdb = useAppSelector(
+    (state) => state.movies.recommendedMoviesTmdb
   );
   const apiCallInProgress = useAppSelector(
     (state) => state.api.apiCallsInProgress
@@ -21,12 +25,21 @@ const RecommendedPage = () => {
       >
         {apiCallInProgress ? (
           <Spinner />
-        ) : (
-          recommendedMovies.map((recommendedMovie) => (
+        ) : isLocalhost ? (
+          recommendedMoviesCgpt.map((recommendedMovie) => (
             <RecommendedMovie
               key={`${recommendedMovie.title},${recommendedMovie.year}`}
               title={recommendedMovie.title}
               year={recommendedMovie.year}
+            />
+          ))
+        ) : (
+          recommendedMoviesTmdb.map((recommendedMovie) => (
+            <RecommendedMovie
+              key={recommendedMovie.id}
+              title={recommendedMovie.title}
+              year={new Date(recommendedMovie.release_date).getFullYear()}
+              id={recommendedMovie.id}
             />
           ))
         )}
@@ -35,4 +48,4 @@ const RecommendedPage = () => {
   );
 };
 
-export default RecommendedPage;
+export default RecommendedMoviesPage;

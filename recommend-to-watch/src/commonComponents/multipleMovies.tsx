@@ -5,10 +5,11 @@ import { useRouter } from "next/navigation";
 import Movie from "./Movie";
 import React, { FC } from "react";
 import {
-  getRecommendedMovies,
+  getRecommendedMoviesFromCgpt,
+  getRecommendedMoviesFromTmdb,
   selectMovie,
 } from "@/redux/reducers/movieReducer";
-import { getRecommendations } from "@/app/apiLogic/apiHelpers";
+import { getRecommendations } from "@/apiLogic/apiHelpers";
 import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
 
 const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
@@ -35,9 +36,16 @@ const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
         dispatch(apiCallStarted());
         const recs = await getRecommendations(
           selected.title,
-          selected.release_date
+          selected.release_date,
+          selected.id
         );
-        dispatch(getRecommendedMovies(recs));
+
+        if (document.location.hostname === "localhost") {
+          dispatch(getRecommendedMoviesFromCgpt(recs));
+        } else {
+          dispatch(getRecommendedMoviesFromTmdb(recs));
+        }
+
         dispatch(apiCallEnded());
 
         router.push("/recommendedMovies");

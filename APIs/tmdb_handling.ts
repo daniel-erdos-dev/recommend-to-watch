@@ -35,6 +35,22 @@ export async function getMovieDetailsFromApi(
   }
 }
 
+export async function getSimilarMovies(id: number): Promise<any> {
+  try {
+    const options = await provideOptions();
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/similar`,
+      options
+    );
+    const data = await response.json();
+
+    return data.results;
+  } catch (err) {
+    console.error("GET movie details API call failed to TMDB. " + err);
+    throw err;
+  }
+}
+
 // Params: TMDB movie id and 2 digit country code like HU, UK, US
 export async function getProviderInfo(
   movie_id: number,

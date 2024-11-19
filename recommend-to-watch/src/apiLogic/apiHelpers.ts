@@ -1,11 +1,39 @@
-import { getRecommendationsFromApi } from "../../../../APIs/chatgtp_api_handler";
-import * as tmdbApi from "../../../../APIs/tmdb_handling";
+import { getRecommendationsFromApi } from "../../../APIs/chatgtp_api_handler";
+import * as tmdbApi from "../../../APIs/tmdb_handling";
 
 export async function getRecommendations(
   title: string,
-  release_date: string
+  release_date: string,
+  id: number
   /* eslint-disable @typescript-eslint/no-explicit-any */
 ): Promise<any> {
+  // directly calling chatGPT API from the client would expose the api key, so recommendations
+  // by chatGPT only works locally with the api key set in an env file
+  // if the application runs in a browser, it'll change to get recommendations from TMDB
+
+  if (document.location.hostname === "localhost") {
+    return await getRecommendationsFromChatGPT(title, release_date);
+  } else {
+    return await getRecommendationsFromTMDB(id);
+  }
+}
+
+async function getRecommendationsFromTMDB(id: number) {
+  try {
+    const movie = await tmdbApi.getSimilarMovies(id);
+
+    return movie;
+  } catch (err) {
+    console.error(
+      "Something went wrong when called tmdb api to get movie info: " + err
+    );
+  }
+}
+
+async function getRecommendationsFromChatGPT(
+  title: string,
+  release_date: string
+) {
   try {
     const recommendations = await getRecommendationsFromApi(
       title,

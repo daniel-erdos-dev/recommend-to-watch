@@ -2,28 +2,41 @@
 
 import React, { FC } from "react";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   loadRecommendedMovieData,
   selectRecommendedMovie,
 } from "@/redux/reducers/movieReducer";
-import { getMovieDetails } from "@/app/apiLogic/apiHelpers";
+import { getMovieDetails } from "@/apiLogic/apiHelpers";
 import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
 
-const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year }) => {
+const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const recommendedMoviesTmdb = useAppSelector(
+    (state) => state.movies.recommendedMoviesTmdb
+  );
 
   async function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    // set this movie as selected recommended movie in store based on title and year
-    dispatch(selectRecommendedMovie({ title, year }));
-    // make request for details
-    dispatch(apiCallStarted());
-    const details = await getMovieDetails(title, year);
-    // store details in store
-    dispatch(apiCallEnded());
-    dispatch(loadRecommendedMovieData(details[0]));
+    const isLocalHost = document.location.hostname === "localhost";
+
+    if (isLocalHost) {
+      // set this movie as selected recommended movie in store based on title and year
+      dispatch(selectRecommendedMovie({ title, year }));
+      // make request for details
+      dispatch(apiCallStarted());
+      const details = await getMovieDetails(title, year);
+      // store details in store
+      dispatch(apiCallEnded());
+      dispatch(loadRecommendedMovieData(details[0]));
+    } else {
+      const selectedMovie = recommendedMoviesTmdb.find((movie) => movie.id);
+      if (selectedMovie) {
+        dispatch(loadRecommendedMovieData(selectedMovie));
+      }
+    }
+
     router.push("/selectRegion");
   }
 
@@ -45,6 +58,7 @@ const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year }) => {
 type RecommendedMovieProps = {
   title: string;
   year: number;
+  id?: number;
 };
 
 export default RecommendedMovie;

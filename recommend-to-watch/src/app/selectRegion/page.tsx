@@ -2,14 +2,14 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import CountrySelector from "@/commonComponents/simpleCountrySelector";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { getProviders } from "../apiLogic/apiHelpers";
+import { getProviders } from "../../apiLogic/apiHelpers";
 import { getProviderInfo } from "@/redux/reducers/providerReducer";
 import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
+import CountrySelector from "@/commonComponents/countrySelector";
 
 // Render region/country selector and handle store logic regarding that and providers
-const SelectRegion = () => {
+const SelectRegionPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const recMovieData = useAppSelector(
@@ -44,4 +44,4 @@ const SelectRegion = () => {
   );
 };
 
-export default SelectRegion;
+export default SelectRegionPage;

@@ -3,9 +3,12 @@
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
 import Movie from "./Movie";
-import { getRecommendations } from "@/app/apiLogic/apiHelpers";
+import { getRecommendations } from "@/apiLogic/apiHelpers";
 import { useAppDispatch } from "@/redux/hooks";
-import { getRecommendedMovies } from "@/redux/reducers/movieReducer";
+import {
+  getRecommendedMoviesFromCgpt,
+  getRecommendedMoviesFromTmdb,
+} from "@/redux/reducers/movieReducer";
 import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
 
 const SingleMovie: FC<SingleMovieProps> = ({
@@ -13,6 +16,7 @@ const SingleMovie: FC<SingleMovieProps> = ({
   poster_path,
   release_date,
   title,
+  id,
 }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -22,9 +26,15 @@ const SingleMovie: FC<SingleMovieProps> = ({
 
     try {
       dispatch(apiCallStarted());
-      const recs = await getRecommendations(title, release_date);
+      const recs = await getRecommendations(title, release_date, id);
       dispatch(apiCallEnded());
-      dispatch(getRecommendedMovies(recs));
+
+      if (document.location.hostname === "localhost") {
+        dispatch(getRecommendedMoviesFromCgpt(recs));
+      } else {
+        dispatch(getRecommendedMoviesFromTmdb(recs));
+      }
+
       router.push("/recommendedMovies");
     } catch (err) {
       console.error(
@@ -74,6 +84,7 @@ type SingleMovieProps = {
   poster_path: string;
   release_date: string;
   title: string;
+  id: number;
 };
 
 export default SingleMovie;

@@ -4,7 +4,7 @@ import BigMovieCard from "@/commonComponents/BigMovieCard";
 import Providers from "@/commonComponents/Providers";
 import { useAppSelector } from "@/redux/hooks";
 
-const RecommendedMovie = () => {
+const RecommendedMoviePage = () => {
   const getProviderInfo = useAppSelector(
     (state) => state.provider.providerInfo
   );
@@ -30,4 +30,4 @@ const RecommendedMovie = () => {
   );
 };
 
-export default RecommendedMovie;
+export default RecommendedMoviePage;

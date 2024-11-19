@@ -9,7 +9,7 @@ import {
 } from "@/redux/reducers/movieReducer";
 import { Provider } from "react-redux";
 import { store } from "@/redux/configureStore";
-import { getMovieDetails } from "./apiLogic/apiHelpers";
+import { getMovieDetails } from "../apiLogic/apiHelpers";
 import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
 import Link from "next/link";
 

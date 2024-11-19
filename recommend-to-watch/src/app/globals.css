@@ -184,6 +184,7 @@ button:disabled {
   display: flex;
   width: inherit;
   text-align: center;
+  justify-content: center;
 }
 
 .flexColumn {
