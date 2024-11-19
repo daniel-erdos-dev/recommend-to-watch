@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getProviders } from "../../apiLogic/apiHelpers";
 import { getProviderInfo } from "@/redux/reducers/providerReducer";
 import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
-import CountrySelector from "@/commonComponents/countrySelector";
+import CountrySelector from "../../commonComponents/CountrySelector";
 
 // Render region/country selector and handle store logic regarding that and providers
 const SelectRegionPage = () => {

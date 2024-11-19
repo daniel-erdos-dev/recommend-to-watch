@@ -1,7 +1,7 @@
 "use client";
 
-import BigMovieCard from "@/commonComponents/BigMovieCard";
-import Providers from "@/commonComponents/Providers";
+import BigMovieCard from "../../../commonComponents/BigMovieCard";
+import Providers from "../../../commonComponents/Providers";
 import { useAppSelector } from "@/redux/hooks";
 
 const RecommendedMoviePage = () => {

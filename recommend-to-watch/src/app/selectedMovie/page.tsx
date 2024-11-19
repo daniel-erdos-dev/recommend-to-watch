@@ -1,7 +1,7 @@
 "use client";
 
-import SingleMovie from "@/commonComponents/SingleMovie";
-import Spinner from "@/commonComponents/Spinner";
+import SingleMovie from "../../commonComponents/SingleMovie";
+import Spinner from "../../commonComponents/Spinner";
 import { useAppSelector } from "@/redux/hooks";
 
 const SelectedMoviePage = () => {
