@@ -1,18 +1,16 @@
 "use client";
 
-import RecommendedMovie from "../commonComponents/RecommendedMovie";
 import Spinner from "../commonComponents/Spinner";
 import { useAppSelector } from "@/redux/hooks";
+import dynamic from "next/dynamic";
+
+const RecommendedMovieListWithNoSSR = dynamic(
+  () => import("./RecommendedMovieList"),
+  { ssr: false }
+);
 
 // Show the movies recommended by ChatGPT
 const RecommendedMoviesPage = () => {
-  const isLocalhost = window.location.origin.startsWith("http://localhost");
-  const recommendedMoviesCgpt = useAppSelector(
-    (state) => state.movies.recommendedMoviesCgpt
-  );
-  const recommendedMoviesTmdb = useAppSelector(
-    (state) => state.movies.recommendedMoviesTmdb
-  );
   const apiCallInProgress = useAppSelector(
     (state) => state.api.apiCallsInProgress
   );
@@ -23,26 +21,7 @@ const RecommendedMoviesPage = () => {
         className="flex gap-8 row-start-2 items-center sm:items-start"
         id="recMoviesContainer"
       >
-        {apiCallInProgress ? (
-          <Spinner />
-        ) : isLocalhost ? (
-          recommendedMoviesCgpt.map((recommendedMovie) => (
-            <RecommendedMovie
-              key={`${recommendedMovie.title},${recommendedMovie.year}`}
-              title={recommendedMovie.title}
-              year={recommendedMovie.year}
-            />
-          ))
-        ) : (
-          recommendedMoviesTmdb.map((recommendedMovie) => (
-            <RecommendedMovie
-              key={recommendedMovie.id}
-              title={recommendedMovie.title}
-              year={new Date(recommendedMovie.release_date).getFullYear()}
-              id={recommendedMovie.id}
-            />
-          ))
-        )}
+        {apiCallInProgress ? <Spinner /> : <RecommendedMovieListWithNoSSR />}
       </main>
     </div>
   );
