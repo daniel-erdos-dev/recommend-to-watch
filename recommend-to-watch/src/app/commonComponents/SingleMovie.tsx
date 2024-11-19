@@ -29,7 +29,7 @@ const SingleMovie: FC<SingleMovieProps> = ({
       const recs = await getRecommendations(title, release_date, id);
       dispatch(apiCallEnded());
 
-      if (document.location.hostname === "localhost") {
+      if (window.location.origin.startsWith("http://localhost")) {
         dispatch(getRecommendedMoviesFromCgpt(recs));
       } else {
         dispatch(getRecommendedMoviesFromTmdb(recs));

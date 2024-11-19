@@ -40,7 +40,7 @@ const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
           selected.id
         );
 
-        if (document.location.hostname === "localhost") {
+        if (window.location.origin.startsWith("http://localhost")) {
           dispatch(getRecommendedMoviesFromCgpt(recs));
         } else {
           dispatch(getRecommendedMoviesFromTmdb(recs));

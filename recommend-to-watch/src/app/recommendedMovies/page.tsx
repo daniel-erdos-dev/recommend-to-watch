@@ -6,7 +6,7 @@ import { useAppSelector } from "@/redux/hooks";
 
 // Show the movies recommended by ChatGPT
 const RecommendedMoviesPage = () => {
-  const isLocalhost = document.location.hostname === "localhost";
+  const isLocalhost = window.location.origin.startsWith("http://localhost");
   const recommendedMoviesCgpt = useAppSelector(
     (state) => state.movies.recommendedMoviesCgpt
   );

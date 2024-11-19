@@ -11,7 +11,7 @@ export async function getRecommendations(
   // by chatGPT only works locally with the api key set in an env file
   // if the application runs in a browser, it'll change to get recommendations from TMDB
 
-  if (document.location.hostname === "localhost") {
+  if (window.location.origin.startsWith("http://localhost")) {
     return await getRecommendationsFromChatGPT(title, release_date);
   } else {
     return await getRecommendationsFromTMDB(id);

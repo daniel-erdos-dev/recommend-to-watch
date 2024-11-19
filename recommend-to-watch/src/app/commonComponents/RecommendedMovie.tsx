@@ -19,7 +19,7 @@ const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
 
   async function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    const isLocalHost = document.location.hostname === "localhost";
+    const isLocalHost = window.location.origin.startsWith("http://localhost");
 
     if (isLocalHost) {
       // set this movie as selected recommended movie in store based on title and year
