@@ -1,6 +1,6 @@
 "use client";
 
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 import { useRouter } from "next/navigation";
 import Movie from "./Movie";
 import React, { FC } from "react";
@@ -8,9 +8,9 @@ import {
   getRecommendedMoviesFromCgpt,
   getRecommendedMoviesFromTmdb,
   selectMovie,
-} from "@/redux/reducers/movieReducer";
-import { getRecommendations } from "@/apiLogic/apiHelpers";
-import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
+} from "../../redux/reducers/movieReducer";
+import { getRecommendations } from "../../apiLogic/apiHelpers";
+import { apiCallEnded, apiCallStarted } from "../../redux/reducers/apiReducer";
 
 const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
   const router = useRouter();

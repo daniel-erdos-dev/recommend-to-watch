@@ -3,13 +3,13 @@
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
 import Movie from "./Movie";
-import { getRecommendations } from "@/apiLogic/apiHelpers";
-import { useAppDispatch } from "@/redux/hooks";
+import { getRecommendations } from "../../apiLogic/apiHelpers";
+import { useAppDispatch } from "../../redux/hooks";
 import {
   getRecommendedMoviesFromCgpt,
   getRecommendedMoviesFromTmdb,
-} from "@/redux/reducers/movieReducer";
-import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
+} from "../../redux/reducers/movieReducer";
+import { apiCallEnded, apiCallStarted } from "../../redux/reducers/apiReducer";
 
 const SingleMovie: FC<SingleMovieProps> = ({
   overview,

@@ -2,13 +2,13 @@
 
 import React, { FC } from "react";
 import { useRouter } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   loadRecommendedMovieData,
   selectRecommendedMovie,
-} from "@/redux/reducers/movieReducer";
-import { getMovieDetails } from "@/apiLogic/apiHelpers";
-import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
+} from "../../redux/reducers/movieReducer";
+import { getMovieDetails } from "../../apiLogic/apiHelpers";
+import { apiCallEnded, apiCallStarted } from "../../redux/reducers/apiReducer";
 
 const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
   const router = useRouter();

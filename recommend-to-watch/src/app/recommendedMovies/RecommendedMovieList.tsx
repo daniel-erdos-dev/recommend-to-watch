@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "../../redux/hooks";
 import RecommendedMovie from "../commonComponents/RecommendedMovie";
 
 const RecommendedMovieList = () => {
