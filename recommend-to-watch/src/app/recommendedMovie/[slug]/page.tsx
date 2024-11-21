@@ -2,7 +2,7 @@
 
 import BigMovieCard from "../../commonComponents/BigMovieCard";
 import Providers from "../../commonComponents/Providers";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "../../../redux/hooks";
 
 const RecommendedMoviePage = () => {
   const getProviderInfo = useAppSelector(

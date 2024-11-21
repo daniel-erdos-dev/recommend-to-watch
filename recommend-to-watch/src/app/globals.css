@@ -124,7 +124,7 @@ button:disabled {
   background-color: var(--primary-btn-hover);
 }
 
-.countrySelector {
+#countrySelector {
   background-color: black;
   border-bottom: groove;
   display: flex;
@@ -136,7 +136,7 @@ button:disabled {
   font-weight: 600;
 }
 
-.countrySelectorContainer {
+#countrySelectorContainer {
   display: flex;
   flex-flow: column;
   width: 100%;
@@ -144,7 +144,7 @@ button:disabled {
   margin-bottom: 10vh;
 }
 
-.countrySelectorLabel {
+#countrySelectorLabel {
   font-size: larger;
   font-weight: 800;
 }

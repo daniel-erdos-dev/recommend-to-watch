@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import BigMovieCard from "./BigMovieCard";
-import { title } from "process";
 
 const BigMovieCardProps = {
   overview: "",

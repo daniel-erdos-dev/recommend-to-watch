@@ -1,20 +1,20 @@
 "use-client";
 
 import React from "react";
-import { useAppDispatch } from "@/redux/hooks";
-import { selectCountry } from "@/redux/reducers/providerReducer";
+import { useAppDispatch } from "../../redux/hooks";
+import { selectCountry } from "../../redux/reducers/providerReducer";
+
+export const countries = [
+  { name: "Hungary", code: "HU" },
+  { name: "USA", code: "US" },
+  { name: "England", code: "GB" },
+  { name: "Deutschland", code: "DE" },
+  { name: "Austria", code: "AU" },
+  { name: "Spain", code: "ES" },
+];
 
 const CountrySelector: React.FC = () => {
   const dispatch = useAppDispatch();
-
-  const countries = [
-    { name: "Hungary", code: "HU" },
-    { name: "USA", code: "US" },
-    { name: "England", code: "GB" },
-    { name: "Deutschland", code: "DE" },
-    { name: "Austria", code: "AU" },
-    { name: "Spain", code: "ES" },
-  ];
 
   function handleSelectorChange(
     event: React.ChangeEvent<HTMLSelectElement>
@@ -23,14 +23,14 @@ const CountrySelector: React.FC = () => {
   }
 
   return (
-    <div className="countrySelectorContainer">
-      <label htmlFor="countries" className="countrySelectorLabel">
-        Select your country:
-      </label>
+    <div id="countrySelectorContainer">
+      <span id="countrySelectorLabel">Select your country:</span>
       <select
         name="countries"
+        data-testid="country-selector"
+        aria-labelledby="countrySelectorLabel"
         onChange={handleSelectorChange}
-        className="countrySelector"
+        id="countrySelector"
         defaultValue=""
       >
         <option disabled value="">
