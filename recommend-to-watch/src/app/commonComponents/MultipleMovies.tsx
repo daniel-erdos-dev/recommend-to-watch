@@ -69,7 +69,10 @@ const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
         };
         return (
           <div key={movie.id} className="movieChoiceContainer">
-            <Movie {...movieProps} />
+            <Movie
+              {...movieProps}
+              data-testid={"multiple-movies-movie-component"}
+            />
             <button
               onClick={handleClick}
               className="chooseThisButton"
