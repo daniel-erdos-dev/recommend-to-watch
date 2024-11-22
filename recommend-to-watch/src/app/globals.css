@@ -153,15 +153,6 @@ button:disabled {
   max-width: 50%;
 }
 
-.movieCard {
-  display: flex;
-  flex-flow: column;
-  color: black;
-  background-color: var(--card);
-  padding: 0vh 4vh 3vh 4vh;
-  align-items: center;
-}
-
 .bigMovieCard {
   display: flex;
   color: black;

@@ -50,8 +50,8 @@ export default function Home() {
 
   return (
     <Provider store={store}>
-      <div className="grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-16 pb-20 gap-16 font-[family-name:var(--font-geist-sans)]">
-        <main className="flex flex-col gap-8 row-start-2 items-center">
+      <div className="items-center justify-items-center min-h-min font-[family-name:var(--font-geist-sans)]">
+        <main className="flex flex-col gap-8 items-center bg-white p-8 mt-8 rounded-lg shadow-lg mx-auto max-w-4xl">
           <h1>
             Search for your favorite movie and get movie recommendations based
             on it!

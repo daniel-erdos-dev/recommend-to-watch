@@ -1,0 +1,79 @@
+/* Tailwind CSS Setup */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles */
+
+body {
+  @apply bg-gray-100 text-gray-800 font-sans antialiased;
+}
+
+/* Header */
+header {
+  @apply bg-green-500 text-white py-6 px-4 rounded-lg shadow-md mx-auto max-w-4xl;
+}
+
+header h1 {
+  @apply text-3xl font-bold mb-2;
+}
+
+header p {
+  @apply text-lg;
+}
+
+/* Navigation */
+nav a {
+  @apply text-white text-lg font-medium hover:underline ml-4;
+}
+
+/* Main Content */
+/* main {
+  @apply bg-white p-8 mt-8 rounded-lg shadow-lg mx-auto max-w-4xl;
+} */
+
+/* Buttons */
+button,
+a.button {
+  @apply inline-block bg-green-500 text-white px-6 py-2 rounded-lg font-medium text-base mt-4 hover:bg-green-600 transition duration-300 ease-in-out;
+}
+
+/* Input Field */
+input {
+  @apply border-b-2 border-gray-300 text-center focus:outline-none focus:border-green-500 transition-all duration-300 ease-in-out w-full py-2 mt-4;
+}
+
+/* Lists */
+ul {
+  @apply list-none mt-6 space-y-3;
+}
+
+ul li {
+  @apply bg-green-100 px-4 py-3 rounded-md text-gray-700 shadow-sm;
+}
+
+/* Footer */
+footer {
+  @apply mt-8 py-4 text-center text-gray-600 text-sm;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 {
+    @apply text-2xl;
+  }
+
+  header p {
+    @apply text-base;
+  }
+
+  main {
+    @apply p-6;
+  }
+
+  button,
+  a.button {
+    @apply text-sm px-4 py-2;
+  }
+}
