@@ -7,14 +7,23 @@ import {
   loadRecommendedMovieData,
   selectRecommendedMovie,
 } from "@/redux/reducers/movieReducer";
-import { getMovieDetails } from "@/apiLogic/apiHelpers";
+import { getMovieDetails, getProviders } from "@/apiLogic/apiHelpers";
 import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
+import { getProviderInfo } from "@/redux/reducers/providerReducer";
 
 const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const recommendedMoviesTmdb = useAppSelector(
     (state) => state.movies.recommendedMoviesTmdb
+  );
+
+  const selectedCountry = useAppSelector(
+    (state) => state.provider.selectedCountry
+  );
+
+  const recommendedMovie = useAppSelector(
+    (state) => state.movies.recommendedMovieData
   );
 
   async function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
@@ -37,7 +46,19 @@ const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
       }
     }
 
-    router.push("/selectRegion");
+    if (selectedCountry) {
+      dispatch(apiCallStarted());
+      const providers = await getProviders(
+        recommendedMovie.id,
+        selectedCountry
+      );
+      dispatch(apiCallEnded());
+      // store provider info in store
+      dispatch(getProviderInfo(providers));
+      router.push(`/recommendedMovie/${encodeURI(recommendedMovie.title)}`);
+    } else {
+      router.push("/selectRegion");
+    }
   }
 
   return (

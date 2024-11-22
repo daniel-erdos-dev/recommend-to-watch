@@ -56,15 +56,9 @@ export default function Home() {
             Search for your favorite movie and get movie recommendations based
             on it!
           </h1>
-          <Link href={"/about"} id="aboutLink">
-            About
-          </Link>
-          <input type="text" className="movieInput" onChange={handleChange} />
-          <button
-            className="recommendButton"
-            onClick={handleClick}
-            disabled={searchMovieTitle == ""}
-          >
+
+          <input type="text" onChange={handleChange} />
+          <button onClick={handleClick} disabled={searchMovieTitle == ""}>
             Recommend
           </button>
         </main>

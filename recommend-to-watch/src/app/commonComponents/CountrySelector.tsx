@@ -30,8 +30,13 @@ const CountrySelector: React.FC = () => {
       <select
         name="countries"
         onChange={handleSelectorChange}
-        className="px-20 py-2 text-center font-medium border-b-2 border-gray-300 focus:outline-none"
+        defaultValue=""
+        required
       >
+        <option disabled value="" className="text-slate-600" hidden>
+          {" "}
+          select an option{" "}
+        </option>
         {countries.map((country) => {
           return (
             <option key={country.code} value={country.code}>
