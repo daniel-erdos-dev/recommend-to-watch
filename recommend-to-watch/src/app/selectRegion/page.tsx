@@ -31,13 +31,9 @@ const SelectRegionPage = () => {
   }
 
   return (
-    <main className="flex gap-8 row-start-2" id="countrySelectContainer">
+    <main className="flex gap-8 flex-col items-center mt-14 py-5 px-10 bg-white rounded-lg shadow-lg w-fit justify-self-center">
       <CountrySelector />
-      <button
-        onClick={handleClick}
-        disabled={!selectedCountry}
-        id="selectCountryBtn"
-      >
+      <button onClick={handleClick} disabled={!selectedCountry}>
         Submit
       </button>
     </main>

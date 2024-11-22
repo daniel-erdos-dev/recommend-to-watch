@@ -41,17 +41,13 @@ const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
   }
 
   return (
-    <main className="flex gap-8 row-start-2 smallMain">
+    <div className="flex flex-col p-5 bg-white rounded-lg shadow-lg">
       <div>
-        <div>
-          <h1>{title}</h1>
-          <h3>{year}</h3>
-        </div>
-        <button onClick={handleClick} className="whereToWatchButton">
-          Where can I watch?
-        </button>
+        <h1 className="text-lg font-bold">{title}</h1>
+        <h3 className="text-sm font-semibold">{year}</h3>
       </div>
-    </main>
+      <button onClick={handleClick}>Where can I watch?</button>
+    </div>
   );
 };
 
