@@ -7,9 +7,9 @@ You can check out in action on: [Recommend to watch on Azure](https://witty-beac
 **Work in progress!**
 Things to do for v1:
 
-- Create tests for the application
-- Refactor/clean-up CSS, break down into smaller files, use Tailwind CSS
-- Style it to make prettier
+- Create tests for the application - **in progress on "tests" branch**
+- Refactor/clean-up CSS, break down into smaller files, use Tailwind CSS - **in progress on "style" branch**
+- Style it to make prettier - **in progress on "style" branch**
 - Host backend repositories in Azure, and serve data through those
 - Fix loading periods to give a consistent experience (sometimes loading animation stops before next dataset is loaded)
 - Performance optimisation
