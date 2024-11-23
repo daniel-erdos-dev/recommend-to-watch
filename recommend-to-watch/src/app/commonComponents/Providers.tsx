@@ -3,27 +3,27 @@ import Image from "next/image";
 
 const ProviderData: FC<ProviderProps> = ({ providers }) => {
   return (
-    <>
+    <div className="flex flex-col">
       {providers.map((provider) => {
         return (
-          <div key={provider.provider_name} className="actualProviderContainer">
+          <div key={provider.provider_name} className="flex mb-4 items-center">
             <Image
               src={`https://media.themoviedb.org/t/p/original/${provider.logo_path}`}
               alt={provider.provider_name}
               width={36}
               height={36}
             />
-            <p className="providerName">{provider.provider_name}</p>
+            <p className="ml-4 font-semibold">{provider.provider_name}</p>
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 
 const NoProviders = () => {
   return (
-    <div className="providerContainer">
+    <div className="flex gap-x-8 flex-col">
       <h1>Sorry</h1>
       <p>No providers for this movie in your region</p>
     </div>
@@ -32,22 +32,22 @@ const NoProviders = () => {
 
 const Providers: FC<AllProviderProps> = ({ flatrate, buy, rent }) => {
   return (
-    <div className="flex gap-8 row-start-2 providersContainer">
+    <div className="flex gap-x-8 flex-col">
       {flatrate && (
-        <div className="providerContainer">
-          <h1>Stream</h1>
+        <div>
+          <h1 className="text-lg font-bold text-center mb-4">Stream</h1>
           <ProviderData providers={flatrate} />
         </div>
       )}
       {rent && (
-        <div className="providerContainer">
-          <h1>Rent</h1>
+        <div>
+          <h1 className="text-lg font-bold text-center mb-4">Rent</h1>
           <ProviderData providers={rent} />
         </div>
       )}
       {buy && (
-        <div className="providerContainer">
-          <h1>Buy</h1>
+        <div>
+          <h1 className="text-lg font-bold text-center mb-4">Buy</h1>
           <ProviderData providers={buy} />
         </div>
       )}

@@ -7,14 +7,23 @@ import {
   loadRecommendedMovieData,
   selectRecommendedMovie,
 } from "@/redux/reducers/movieReducer";
-import { getMovieDetails } from "@/apiLogic/apiHelpers";
+import { getMovieDetails, getProviders } from "@/apiLogic/apiHelpers";
 import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
+import { getProviderInfo } from "@/redux/reducers/providerReducer";
 
 const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const recommendedMoviesTmdb = useAppSelector(
     (state) => state.movies.recommendedMoviesTmdb
+  );
+
+  const selectedCountry = useAppSelector(
+    (state) => state.provider.selectedCountry
+  );
+
+  const recommendedMovie = useAppSelector(
+    (state) => state.movies.recommendedMovieData
   );
 
   async function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
@@ -31,27 +40,37 @@ const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
       dispatch(apiCallEnded());
       dispatch(loadRecommendedMovieData(details[0]));
     } else {
-      const selectedMovie = recommendedMoviesTmdb.find((movie) => movie.id);
+      const selectedMovie = recommendedMoviesTmdb.find(
+        (movie) => movie.id === id
+      );
       if (selectedMovie) {
         dispatch(loadRecommendedMovieData(selectedMovie));
       }
     }
 
-    router.push("/selectRegion");
+    if (selectedCountry) {
+      dispatch(apiCallStarted());
+      const providers = await getProviders(
+        recommendedMovie.id,
+        selectedCountry
+      );
+      dispatch(apiCallEnded());
+      // store provider info in store
+      dispatch(getProviderInfo(providers));
+      router.push(`/recommendedMovie/${encodeURI(recommendedMovie.title)}`);
+    } else {
+      router.push("/selectRegion");
+    }
   }
 
   return (
-    <main className="flex gap-8 row-start-2 smallMain">
+    <div className="flex flex-col p-5 bg-white rounded-lg shadow-lg">
       <div>
-        <div>
-          <h1>{title}</h1>
-          <h3>{year}</h3>
-        </div>
-        <button onClick={handleClick} className="whereToWatchButton">
-          Where can I watch?
-        </button>
+        <h1 className="text-lg font-bold">{title}</h1>
+        <h3 className="text-sm font-semibold">{year}</h3>
       </div>
-    </main>
+      <button onClick={handleClick}>Where can I watch?</button>
+    </div>
   );
 };
 
