@@ -8,12 +8,12 @@ const Movie: FC<MovieProps> = ({
   title,
 }) => {
   return (
-    <div className="movieCard">
-      <div className="firstItemsMovieCard">
-        <div className="flexColumn">
-          <h1 className="movieTitle">{title}</h1>
-          <h3>({new Date(release_date).getFullYear()})</h3>
-        </div>
+    <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center">
+        <h1 className="text-lg font-bold max-w-64 text-center">{title}</h1>
+        <h3 className="text-sm font-semibold mb-2">
+          ({new Date(release_date).getFullYear()})
+        </h3>
         <Image
           src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${poster_path}`}
           alt={`Poster for ${title}`}
@@ -22,7 +22,7 @@ const Movie: FC<MovieProps> = ({
           height={384}
         />
       </div>
-      <h5 className="movieOverview">{overview}</h5>
+      <p className="w-64 line-clamp-4">{overview}</p>
     </div>
   );
 };

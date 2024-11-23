@@ -11,15 +11,9 @@ const SelectedMoviesPage = () => {
   );
 
   return (
-    <div className="items-center justify-items-center min-h-screen font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start ">
-        {apiCallInProgress ? (
-          <Spinner />
-        ) : (
-          <MultipleMovies movies={movieList} />
-        )}
-      </main>
-    </div>
+    <main className="flex gap-8">
+      {apiCallInProgress ? <Spinner /> : <MultipleMovies movies={movieList} />}
+    </main>
   );
 };
 

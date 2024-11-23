@@ -51,27 +51,19 @@ const SingleMovie: FC<SingleMovieProps> = ({
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pb-20 gap-8 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col row-start-2 items-center">
-        <h1 className="mainQuestion">Is this the movie you thought about?</h1>
-        <div className="singleMovieContainer">
+        <h1 className="font-extrabold text-3xl">
+          Is this the movie you thought about?
+        </h1>
+        <div className="p-5 bg-white rounded-lg shadow-lg mt-5">
           <Movie
             overview={overview}
             poster_path={poster_path}
             release_date={release_date}
             title={title}
           />
-          <div className="chooseButtonsContainer">
-            <button
-              onClick={handleYesClick}
-              className="chooseButtons truthyButton"
-            >
-              Yes
-            </button>
-            <button
-              onClick={handleNoClick}
-              className="chooseButtons falsyButton"
-            >
-              No
-            </button>
+          <div className="flex justify-between">
+            <button onClick={handleYesClick}>Yes</button>
+            <button onClick={handleNoClick}>No</button>
           </div>
         </div>
       </main>
