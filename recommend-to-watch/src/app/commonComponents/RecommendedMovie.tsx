@@ -40,7 +40,9 @@ const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
       dispatch(apiCallEnded());
       dispatch(loadRecommendedMovieData(details[0]));
     } else {
-      const selectedMovie = recommendedMoviesTmdb.find((movie) => movie.id);
+      const selectedMovie = recommendedMoviesTmdb.find(
+        (movie) => movie.id === id
+      );
       if (selectedMovie) {
         dispatch(loadRecommendedMovieData(selectedMovie));
       }
