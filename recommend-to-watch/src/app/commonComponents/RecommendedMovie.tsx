@@ -6,10 +6,10 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   loadRecommendedMovieData,
   selectRecommendedMovie,
-} from "@/redux/reducers/movieReducer";
-import { getMovieDetails, getProviders } from "@/apiLogic/apiHelpers";
-import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
-import { getProviderInfo } from "@/redux/reducers/providerReducer";
+} from "../../redux/reducers/movieReducer";
+import { getMovieDetails, getProviders } from "../../apiLogic/apiHelpers";
+import { apiCallEnded, apiCallStarted } from "../../redux/reducers/apiReducer";
+import { getProviderInfo } from "../../redux/reducers/providerReducer";
 
 const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
   const router = useRouter();
