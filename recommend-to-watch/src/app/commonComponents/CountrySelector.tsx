@@ -23,19 +23,21 @@ const CountrySelector: React.FC = () => {
   }
 
   return (
-    <div id="countrySelectorContainer">
-      <span id="countrySelectorLabel">Select your country:</span>
+    <div className="flex flex-col gap-4 items-center">
+      <label htmlFor="countries" className="text-lg font-bold">
+        Select your country:
+      </label>
       <select
         name="countries"
         data-testid="country-selector"
         aria-labelledby="countrySelectorLabel"
         onChange={handleSelectorChange}
-        id="countrySelector"
         defaultValue=""
+        required
       >
-        <option disabled value="">
+        <option disabled value="" className="text-slate-600" hidden>
           {" "}
-          -- select an option --{" "}
+          select an option{" "}
         </option>
         {countries.map((country) => {
           return (

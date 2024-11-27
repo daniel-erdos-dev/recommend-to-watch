@@ -58,7 +58,7 @@ const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
   }
 
   return (
-    <main className="flex gap-8 row-start-2 movieContainer">
+    <div className="flex gap-8 flex-wrap mt-10 ml-10 justify-evenly">
       {movies.map((movie) => {
         const movieProps = {
           id: movie.id,
@@ -68,14 +68,14 @@ const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
           title: movie.title,
         };
         return (
-          <div key={movie.id} className="movieChoiceContainer">
-            <Movie
-              {...movieProps}
-              data-testid={"multiple-movies-movie-component"}
-            />
+          <div
+            key={movie.id}
+            className="flex flex-col justify-between p-5 bg-white rounded-lg shadow-lg"
+          >
+            <Movie {...movieProps} />
             <button
               onClick={handleClick}
-              className="chooseThisButton"
+              className="flex justify-center"
               id={movie.id.toString()}
             >
               Choose this Movie
@@ -83,7 +83,7 @@ const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
           </div>
         );
       })}
-    </main>
+    </div>
   );
 };
 

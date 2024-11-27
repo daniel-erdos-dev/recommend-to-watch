@@ -16,11 +16,8 @@ const RecommendedMoviesPage = () => {
   );
 
   return (
-    <div className="items-center justify-items-center min-h-screen sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main
-        className="flex gap-8 row-start-2 items-center sm:items-start"
-        id="recMoviesContainer"
-      >
+    <div className="min-h-min sm:p-10 font-[family-name:var(--font-geist-sans)] flex">
+      <main className="gap-10 flex justify-evenly flex-wrap">
         {apiCallInProgress ? <Spinner /> : <RecommendedMovieListWithNoSSR />}
       </main>
     </div>
