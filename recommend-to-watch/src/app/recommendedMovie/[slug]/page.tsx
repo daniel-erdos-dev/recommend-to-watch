@@ -32,9 +32,14 @@ const RecommendedMoviePage = () => {
           rent={getProviderInfo?.rent}
         />
       </div>
-      <button onClick={() => router.push("/recommendedMovies")}>
-        Back to recommended list
-      </button>
+      <div className="flex flex-col">
+        <button onClick={() => router.push("/recommendedMovies")}>
+          Back to recommended list
+        </button>
+        <button onClick={() => router.push("/selectRegion")}>
+          Back to country selection
+        </button>
+      </div>
     </main>
   );
 };
