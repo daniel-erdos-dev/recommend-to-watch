@@ -3,7 +3,10 @@
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
 import Movie from "./Movie";
-import { getRecommendations } from "@/apiLogic/apiHelpers";
+import {
+  getRecommendationsFromChatGPT,
+  getRecommendationsFromTMDB,
+} from "@/apiLogic/apiHelpers";
 import { useAppDispatch } from "@/redux/hooks";
 import {
   getRecommendedMoviesFromCgpt,
@@ -26,14 +29,22 @@ const SingleMovie: FC<SingleMovieProps> = ({
 
     try {
       dispatch(apiCallStarted());
-      const recs = await getRecommendations(title, release_date, id);
-      dispatch(apiCallEnded());
-
-      if (window.location.origin.startsWith("http://localhost")) {
-        dispatch(getRecommendedMoviesFromCgpt(recs));
-      } else {
-        dispatch(getRecommendedMoviesFromTmdb(recs));
+      try {
+        const cgptRecs = await getRecommendationsFromChatGPT(
+          title,
+          release_date
+        );
+        dispatch(getRecommendedMoviesFromCgpt(cgptRecs!));
+      } catch (error) {
+        console.error(
+          "Error happened while tried to get recommendations from chatGPT so getting recommendations from TMDB as a fallback. Error: " +
+            error
+        );
+        const tmdbRecs = await getRecommendationsFromTMDB(id);
+        dispatch(getRecommendedMoviesFromTmdb(tmdbRecs));
       }
+
+      dispatch(apiCallEnded());
 
       router.push("/recommendedMovies");
     } catch (err) {

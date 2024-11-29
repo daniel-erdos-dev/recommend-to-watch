@@ -1,49 +1,49 @@
-import { getRecommendationsFromApi } from "../../../APIs/chatgtp_api_handler";
-import * as tmdbApi from "../../../APIs/tmdb_handling";
+const TMDB_BASE_URL =
+  "https://7jgljub8ej.execute-api.eu-north-1.amazonaws.com/tmdb";
 
-export async function getRecommendations(
-  title: string,
-  release_date: string,
-  id: number
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-): Promise<any> {
-  // directly calling chatGPT API from the client would expose the api key, so recommendations
-  // by chatGPT only works locally with the api key set in an env file
-  // if the application runs in a browser, it'll change to get recommendations from TMDB
+const CGPT_BASE_URL =
+  "https://yvrjb4945a.execute-api.eu-north-1.amazonaws.com/cgpt";
 
-  if (window.location.origin.startsWith("http://localhost")) {
-    return await getRecommendationsFromChatGPT(title, release_date);
-  } else {
-    return await getRecommendationsFromTMDB(id);
-  }
-}
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    "x-api-key": "ydVxp86hGj30dH8QC9Do13xlxdWrm39J5fYeVUkB",
+  },
+};
 
-async function getRecommendationsFromTMDB(id: number) {
+export async function getRecommendationsFromTMDB(id: number) {
   try {
-    const movie = await tmdbApi.getSimilarMovies(id);
+    const response = await fetch(`${TMDB_BASE_URL}/similar?id=${id}`, options);
+    const data = await response.json();
 
-    return movie;
+    return data.results;
   } catch (err) {
-    console.error(
-      "Something went wrong when called tmdb api to get movie info: " + err
-    );
+    console.error("GET movie details API call failed to TMDB. " + err);
+    throw err;
   }
 }
 
-async function getRecommendationsFromChatGPT(
+export async function getRecommendationsFromChatGPT(
   title: string,
   release_date: string
 ) {
   try {
-    const recommendations = await getRecommendationsFromApi(
-      title,
-      new Date(release_date).getFullYear().toString()
+    const response = await fetch(
+      `${CGPT_BASE_URL}/recommend?title=${title}&year=${new Date(release_date)
+        .getFullYear()
+        .toString()}`,
+      options
     );
 
-    if (recommendations) {
-      const validJsonPart = recommendations.substring(
-        recommendations.indexOf("["),
-        recommendations.indexOf("]") + 1
+    const recommendations = await response.json();
+
+    const body = recommendations.body;
+
+    if (body) {
+      const validJsonPart = body.substring(
+        body.indexOf("["),
+        body.indexOf("]") + 1
       );
 
       const parsedRecommendations: [{ title: string; year: number }] =
@@ -64,13 +64,18 @@ export async function getProviders(
   /* eslint-disable @typescript-eslint/no-explicit-any */
 ): Promise<any> {
   try {
-    const providers = await tmdbApi.getProviderInfo(movie_id, country_code);
-
-    return providers;
-  } catch (err) {
-    console.error(
-      "Something went wrong when called tmdb api to get provider info: " + err
+    const response = await fetch(
+      `${TMDB_BASE_URL}/providers?movie_id=${movie_id}&country_code=${country_code}`,
+      options
     );
+    const apiResults = await response.json();
+
+    const results = apiResults.body[country_code];
+
+    return results;
+  } catch (err) {
+    console.error("API call failed to TMDB. " + err);
+    throw err;
   }
 }
 
@@ -79,13 +84,19 @@ export async function getMovieDetails(
   year?: number
   /* eslint-disable @typescript-eslint/no-explicit-any */
 ): Promise<any> {
+  const url = year
+    ? `${TMDB_BASE_URL}/movie/titleandyear?title=${encodeURI(
+        title
+      )}&year=${year}`
+    : `${TMDB_BASE_URL}/movie/title?title=${encodeURI(title)}`;
   try {
-    const movie = await tmdbApi.getMovieDetailsFromApi(title, year);
+    const response = await fetch(url, options);
+    const data = await response.json();
+    const json = JSON.parse(data.body);
 
-    return movie;
+    return json;
   } catch (err) {
-    console.error(
-      "Something went wrong when called tmdb api to get movie info: " + err
-    );
+    console.error("GET movie details API call failed to TMDB. " + err);
+    throw err;
   }
 }

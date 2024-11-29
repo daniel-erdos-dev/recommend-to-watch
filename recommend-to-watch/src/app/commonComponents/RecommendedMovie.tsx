@@ -18,6 +18,10 @@ const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
     (state) => state.movies.recommendedMoviesTmdb
   );
 
+  const recommendedMoviesCgpt = useAppSelector(
+    (state) => state.movies.recommendedMoviesCgpt
+  );
+
   const selectedCountry = useAppSelector(
     (state) => state.provider.selectedCountry
   );
@@ -28,9 +32,9 @@ const RecommendedMovie: FC<RecommendedMovieProps> = ({ title, year, id }) => {
 
   async function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    const isLocalHost = window.location.origin.startsWith("http://localhost");
+    const areRecommendationsFromCgpt = recommendedMoviesCgpt.length > 0;
 
-    if (isLocalHost) {
+    if (areRecommendationsFromCgpt) {
       // set this movie as selected recommended movie in store based on title and year
       dispatch(selectRecommendedMovie({ title, year }));
       // make request for details
