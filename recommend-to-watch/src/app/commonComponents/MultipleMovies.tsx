@@ -9,7 +9,10 @@ import {
   getRecommendedMoviesFromTmdb,
   selectMovie,
 } from "@/redux/reducers/movieReducer";
-import { getRecommendations } from "@/apiLogic/apiHelpers";
+import {
+  getRecommendationsFromChatGPT,
+  getRecommendationsFromTMDB,
+} from "@/apiLogic/apiHelpers";
 import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
 
 const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
@@ -34,16 +37,19 @@ const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
 
       try {
         dispatch(apiCallStarted());
-        const recs = await getRecommendations(
-          selected.title,
-          selected.release_date,
-          selected.id
-        );
-
-        if (window.location.origin.startsWith("http://localhost")) {
-          dispatch(getRecommendedMoviesFromCgpt(recs));
-        } else {
-          dispatch(getRecommendedMoviesFromTmdb(recs));
+        try {
+          const cgptRecs = await getRecommendationsFromChatGPT(
+            selected.title,
+            selected.release_date
+          );
+          dispatch(getRecommendedMoviesFromCgpt(cgptRecs!));
+        } catch (error) {
+          console.error(
+            "Error happened while tried to get recommendations from chatGPT so getting recommendations from TMDB as a fallback. Error: " +
+              error
+          );
+          const tmdbRecs = await getRecommendationsFromTMDB(selected.id);
+          dispatch(getRecommendedMoviesFromTmdb(tmdbRecs));
         }
 
         dispatch(apiCallEnded());
