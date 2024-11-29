@@ -10,8 +10,10 @@ const Movie: FC<MovieProps> = ({
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-col items-center">
-        <h1 className="text-lg font-bold max-w-64 text-center">{title}</h1>
-        <h3 className="text-sm font-semibold mb-2">
+        <h1 className="text-lg font-bold max-w-64 text-center movie-title">
+          {title}
+        </h1>
+        <h3 className="text-sm font-semibold mb-2 movie-year">
           ({new Date(release_date).getFullYear()})
         </h3>
         <Image
@@ -20,9 +22,10 @@ const Movie: FC<MovieProps> = ({
           quality={100}
           width={256}
           height={384}
+          className="movie-poster"
         />
       </div>
-      <p className="w-64 line-clamp-4">{overview}</p>
+      <p className="w-64 line-clamp-4 movie-overview">{overview}</p>
     </div>
   );
 };

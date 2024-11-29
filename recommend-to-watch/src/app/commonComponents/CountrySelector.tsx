@@ -24,7 +24,11 @@ const CountrySelector: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-4 items-center">
-      <label htmlFor="countries" className="text-lg font-bold">
+      <label
+        htmlFor="countries"
+        className="text-lg font-bold"
+        id="countrySelect-label"
+      >
         Select your country:
       </label>
       <select
@@ -32,6 +36,7 @@ const CountrySelector: React.FC = () => {
         onChange={handleSelectorChange}
         defaultValue=""
         required
+        id="countrySelect-selector"
       >
         <option disabled value="" className="text-slate-600" hidden>
           {" "}
@@ -39,7 +44,11 @@ const CountrySelector: React.FC = () => {
         </option>
         {countries.map((country) => {
           return (
-            <option key={country.code} value={country.code}>
+            <option
+              key={country.code}
+              value={country.code}
+              id={`countrySelect-optionFor-${country.name}`}
+            >
               {country.name}
             </option>
           );

@@ -33,10 +33,16 @@ const RecommendedMoviePage = () => {
         />
       </div>
       <div className="flex flex-col">
-        <button onClick={() => router.push("/recommendedMovies")}>
+        <button
+          onClick={() => router.push("/recommendedMovies")}
+          id="recommendedMovie-backToListButton"
+        >
           Back to recommended list
         </button>
-        <button onClick={() => router.push("/selectRegion")}>
+        <button
+          onClick={() => router.push("/selectRegion")}
+          id="recommendedMovie-backToCountrySelectionButton"
+        >
           Back to country selection
         </button>
       </div>

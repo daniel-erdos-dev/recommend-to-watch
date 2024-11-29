@@ -11,7 +11,6 @@ import { Provider } from "react-redux";
 import { store } from "@/redux/configureStore";
 import { getMovieDetails } from "../apiLogic/apiHelpers";
 import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
-import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -52,13 +51,21 @@ export default function Home() {
     <Provider store={store}>
       <div className="items-center justify-items-center min-h-min font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-8 items-center bg-white p-8 mt-8 rounded-lg shadow-lg mx-auto max-w-4xl">
-          <h1>
+          <h1 id="home-headerText">
             Search for your favorite movie and get movie recommendations based
             on it!
           </h1>
 
-          <input type="text" onChange={handleChange} />
-          <button onClick={handleClick} disabled={searchMovieTitle == ""}>
+          <input
+            type="text"
+            onChange={handleChange}
+            id="home-favoriteMovieInput"
+          />
+          <button
+            onClick={handleClick}
+            disabled={searchMovieTitle == ""}
+            id="home-recommendButton"
+          >
             Recommend
           </button>
         </main>

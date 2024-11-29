@@ -32,8 +32,12 @@ export default function RootLayout({
       >
         <header>
           <nav>
-            <Link href="/">Home</Link>
-            <Link href={"/about"}>About</Link>
+            <Link href="/" id="nav-homeLink">
+              Home
+            </Link>
+            <Link href={"/about"} id="nav-aboutLink">
+              About
+            </Link>
           </nav>
         </header>
         <ReduxProvider>{children}</ReduxProvider>

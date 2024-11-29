@@ -81,7 +81,7 @@ const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
             <Movie {...movieProps} />
             <button
               onClick={handleClick}
-              className="flex justify-center"
+              className="flex justify-center multipleMovies-chooseButton"
               id={movie.id.toString()}
             >
               Choose this Movie
