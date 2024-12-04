@@ -5,8 +5,6 @@ import { useAppSelector } from "../../redux/hooks";
 import RecommendedMovie from "../commonComponents/RecommendedMovie";
 
 const RecommendedMovieList = () => {
-  const isLocalhost = window.location.origin.startsWith("http://localhost");
-
   const recommendedMoviesCgpt = useAppSelector(
     (state) => state.movies.recommendedMoviesCgpt
   );
@@ -14,7 +12,7 @@ const RecommendedMovieList = () => {
     (state) => state.movies.recommendedMoviesTmdb
   );
 
-  return isLocalhost
+  return recommendedMoviesCgpt.length > 0
     ? recommendedMoviesCgpt.map((recommendedMovie) => (
         <RecommendedMovie
           key={`${recommendedMovie.title},${recommendedMovie.year}`}
