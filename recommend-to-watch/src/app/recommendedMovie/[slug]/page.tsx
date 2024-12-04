@@ -1,8 +1,8 @@
 "use client";
 
-import Movie from "@/app/commonComponents/Movie";
+import Movie from "../../../app/commonComponents/Movie";
 import Providers from "../../commonComponents/Providers";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "../../../redux/hooks";
 import { useRouter } from "next/navigation";
 
 const RecommendedMoviePage = () => {

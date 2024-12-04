@@ -2,7 +2,7 @@
 
 import MultipleMovies from "../commonComponents/MultipleMovies";
 import Spinner from "../commonComponents/Spinner";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "../../redux/hooks";
 
 const SelectedMoviesPage = () => {
   const movieList = useAppSelector((state) => state.movies.movieList);

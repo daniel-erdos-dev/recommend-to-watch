@@ -11,8 +11,8 @@ import { useAppDispatch } from "@/redux/hooks";
 import {
   getRecommendedMoviesFromCgpt,
   getRecommendedMoviesFromTmdb,
-} from "@/redux/reducers/movieReducer";
-import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
+} from "../../redux/reducers/movieReducer";
+import { apiCallEnded, apiCallStarted } from "../../redux/reducers/apiReducer";
 
 const SingleMovie: FC<SingleMovieProps> = ({
   overview,
