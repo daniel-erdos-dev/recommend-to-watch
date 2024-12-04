@@ -6,8 +6,8 @@ import Movie from "./Movie";
 import {
   getRecommendationsFromChatGPT,
   getRecommendationsFromTMDB,
-} from "@/apiLogic/apiHelpers";
-import { useAppDispatch } from "@/redux/hooks";
+} from "../../apiLogic/apiHelpers";
+import { useAppDispatch } from "../../redux/hooks";
 import {
   getRecommendedMoviesFromCgpt,
   getRecommendedMoviesFromTmdb,

@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "redux/configureStore";
 import SingleMovie from "./SingleMovie";
+import { expect } from "jest-without-globals";
 
 const DefaultSingleMovieProps = {
   id: 0,
@@ -33,7 +34,7 @@ describe("SingleMovie component tests", () => {
     );
 
     expect(questionElement).toBeInTheDocument();
-    expect(questionElement).toHaveRole("heading");
+    expect(questionElement.tagName).toBe("H1");
   });
 
   it("renders both buttons", () => {
@@ -50,8 +51,8 @@ describe("SingleMovie component tests", () => {
     expect(bothButton.length).toEqual(2);
     expect(yesButton).toBeInTheDocument();
     expect(noButton).toBeInTheDocument();
-    expect(yesButton).toHaveRole("button");
-    expect(noButton).toHaveRole("button");
+    expect(yesButton.tagName).toBe("BUTTON");
+    expect(noButton.tagName).toBe("BUTTON");
   });
 
   // Rest of the elements are tested already in the Movie.test.tsx test file

@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "redux/configureStore";
 import SelectRegionPage from "./page";
+import { expect } from "jest-without-globals";
 
 jest.mock("next/navigation", () => ({
   useRouter() {
