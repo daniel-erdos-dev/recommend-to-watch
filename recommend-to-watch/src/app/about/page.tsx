@@ -12,7 +12,7 @@ export default function AboutPage() {
           width={554}
           height={40}
         />
-        <p>
+        <p id="about-tmdbText">
           This product uses the TMDB API but is not endorsed or certified by
           TMDB.
         </p>
@@ -24,7 +24,9 @@ export default function AboutPage() {
           width={509}
           height={520}
         />
-        <p>Through TMDB API this product also uses JustWatch</p>
+        <p id="about-justWatchText">
+          Through TMDB API this product also uses JustWatch
+        </p>
       </main>
     </div>
   );

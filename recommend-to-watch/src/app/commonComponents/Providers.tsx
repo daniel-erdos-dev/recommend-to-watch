@@ -12,8 +12,11 @@ const ProviderData: FC<ProviderProps> = ({ providers }) => {
               alt={provider.provider_name}
               width={36}
               height={36}
+              className="provider-logo"
             />
-            <p className="ml-4 font-semibold">{provider.provider_name}</p>
+            <p className="ml-4 font-semibold provider-name">
+              {provider.provider_name}
+            </p>
           </div>
         );
       })}
@@ -24,8 +27,10 @@ const ProviderData: FC<ProviderProps> = ({ providers }) => {
 const NoProviders = () => {
   return (
     <div className="flex gap-x-8 flex-col">
-      <h1>Sorry</h1>
-      <p>No providers for this movie in your region</p>
+      <h1 id="provider-sorryHeader">Sorry</h1>
+      <p id="provider-noProvidersText">
+        No providers for this movie in your region
+      </p>
     </div>
   );
 };
@@ -35,19 +40,34 @@ const Providers: FC<AllProviderProps> = ({ flatrate, buy, rent }) => {
     <div className="flex gap-x-8 flex-col">
       {flatrate && (
         <div>
-          <h1 className="text-lg font-bold text-center mb-4">Stream</h1>
+          <h1
+            className="text-lg font-bold text-center mb-4"
+            id="provider-streamHeader"
+          >
+            Stream
+          </h1>
           <ProviderData providers={flatrate} />
         </div>
       )}
       {rent && (
         <div>
-          <h1 className="text-lg font-bold text-center mb-4">Rent</h1>
+          <h1
+            className="text-lg font-bold text-center mb-4"
+            id="provider-rentHeader"
+          >
+            Rent
+          </h1>
           <ProviderData providers={rent} />
         </div>
       )}
       {buy && (
         <div>
-          <h1 className="text-lg font-bold text-center mb-4">Buy</h1>
+          <h1
+            className="text-lg font-bold text-center mb-4"
+            id="provider-buyHeader"
+          >
+            Buy
+          </h1>
           <ProviderData providers={buy} />
         </div>
       )}
