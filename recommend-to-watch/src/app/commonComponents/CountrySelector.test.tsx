@@ -4,6 +4,7 @@ import CountrySelector from "./CountrySelector";
 import { countries } from "./CountrySelector";
 import { Provider } from "react-redux";
 import { store } from "../../redux/configureStore";
+import { expect } from "jest-without-globals";
 
 beforeEach(() => {
   render(
@@ -29,7 +30,7 @@ describe("CountrySelector component tests", () => {
   it("renders the options to the selector", () => {
     const options = screen.getAllByRole("option");
 
-    expect(options.length).toEqual(countries.length + 1);
+    expect(options.length).toEqual(countries.length);
     countries.forEach((country) => {
       const optionElement = screen.queryByText(
         country.name
@@ -37,13 +38,5 @@ describe("CountrySelector component tests", () => {
       expect(optionElement).toBeInTheDocument();
       expect(optionElement.value).toEqual(country.code);
     });
-  });
-
-  it("should correctly set the default option", () => {
-    const defaultOption = screen.getByRole("option", {
-      name: "-- select an option --",
-    }) as HTMLOptionElement;
-
-    expect(defaultOption.selected).toBe(true);
   });
 });

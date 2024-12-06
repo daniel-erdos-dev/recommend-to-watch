@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import Movie from "./Movie";
+import { expect } from "jest-without-globals";
 
 const DefaultMovieCardProps = {
   overview: "",
@@ -14,22 +15,22 @@ describe("Movie component tests", () => {
     const testTitle = "testTitle";
     render(<Movie {...DefaultMovieCardProps} title={testTitle} />);
 
-    const titleElement = screen.getByRole("heading", { level: 1 });
+    const titleElement = screen.getByText(testTitle);
 
     expect(titleElement).toBeInTheDocument();
-    expect(titleElement).toHaveTextContent(testTitle);
+    expect(titleElement.tagName).toBe("H1");
   });
 
   it("renders the year from release_date param to the component", () => {
-    const date = "1999_01_11";
+    const date = "2003-07-03T00:00:00.000Z";
     render(<Movie {...DefaultMovieCardProps} release_date={date} />);
-
-    const yearElement = screen.getByRole("heading", { level: 3 });
 
     const year = new Date(date).getFullYear();
 
+    const yearElement = screen.getByText(`(${year.toString()})`);
+
     expect(yearElement).toBeInTheDocument();
-    expect(yearElement).toHaveTextContent(year.toString());
+    expect(yearElement.tagName).toBe("H3");
   });
 
   it("renders the movie poster to the component", () => {
@@ -55,9 +56,9 @@ describe("Movie component tests", () => {
     const overview = "something to test";
     render(<Movie {...DefaultMovieCardProps} overview={overview} />);
 
-    const overviewElement = screen.getByRole("heading", { level: 5 });
+    const overviewElement = screen.getByText(overview);
 
     expect(overviewElement).toBeInTheDocument();
-    expect(overviewElement).toHaveTextContent(overview);
+    expect(overviewElement.tagName).toBe("P");
   });
 });
