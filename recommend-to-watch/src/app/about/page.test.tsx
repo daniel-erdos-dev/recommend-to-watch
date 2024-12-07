@@ -1,6 +1,6 @@
-import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import Page from "./page";
+import { describe, expect } from "@jest/globals";
 
 describe("About Page tests", () => {
   it("renders the TMDB image", () => {

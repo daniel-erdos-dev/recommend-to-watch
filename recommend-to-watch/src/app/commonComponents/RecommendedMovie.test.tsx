@@ -1,9 +1,8 @@
-import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import RecommendedMovie from "./RecommendedMovie";
 import { Provider } from "react-redux";
 import { store } from "redux/configureStore";
-import { expect } from "jest-without-globals";
+import { describe, expect } from "@jest/globals";
 
 const DefaultRecommendedMovieProps = {
   id: 0,
