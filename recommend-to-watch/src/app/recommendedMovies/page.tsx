@@ -1,7 +1,7 @@
 "use client";
 
 import Spinner from "../commonComponents/Spinner";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "../../redux/hooks";
 import dynamic from "next/dynamic";
 
 const RecommendedMovieListWithNoSSR = dynamic(

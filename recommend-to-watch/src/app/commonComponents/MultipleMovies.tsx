@@ -1,6 +1,6 @@
 "use client";
 
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 import { useRouter } from "next/navigation";
 import Movie from "./Movie";
 import React, { FC } from "react";

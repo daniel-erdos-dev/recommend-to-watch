@@ -18,7 +18,7 @@ export default function AboutPage() {
         </p>
         <Image
           src={
-            "https://upload.wikimedia.org/wikipedia/commons/e/e1/JustWatch.png?20210111012421"
+            "https://upload.wikimedia.org/wikipedia/commons/e/e1/JustWatch.png"
           }
           alt={"JustWatch logo"}
           width={509}
