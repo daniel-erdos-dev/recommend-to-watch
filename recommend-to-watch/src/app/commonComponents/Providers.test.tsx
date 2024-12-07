@@ -1,7 +1,6 @@
-import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import Providers, { AllProviderProps, ProviderProps } from "./Providers";
-import { expect } from "jest-without-globals";
+import { describe, expect } from "@jest/globals";
 
 const DefaultProvidersProps: AllProviderProps = {
   flatrate: [{ logo_path: "", provider_name: "" }],
