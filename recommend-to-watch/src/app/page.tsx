@@ -1,16 +1,17 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import {
   loadMovies,
   selectMovie,
   setSearchMovieTitle,
-} from "@/redux/reducers/movieReducer";
+} from "../redux/reducers/movieReducer";
 import { Provider } from "react-redux";
-import { store } from "@/redux/configureStore";
+import { store } from "../redux/configureStore";
 import { getMovieDetails } from "../apiLogic/apiHelpers";
-import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
+import { apiCallEnded, apiCallStarted } from "../redux/reducers/apiReducer";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();

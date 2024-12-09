@@ -76,34 +76,26 @@ const Providers: FC<AllProviderProps> = ({ flatrate, buy, rent }) => {
   );
 };
 
-type AllProviderProps = {
-  flatrate?: [
-    {
-      logo_path: string;
-      provider_name: string;
-    }
-  ];
-  buy?: [
-    {
-      logo_path: string;
-      provider_name: string;
-    }
-  ];
-  rent?: [
-    {
-      logo_path: string;
-      provider_name: string;
-    }
-  ];
+export type AllProviderProps = {
+  flatrate?: {
+    logo_path: string;
+    provider_name: string;
+  }[];
+  buy?: {
+    logo_path: string;
+    provider_name: string;
+  }[];
+  rent?: {
+    logo_path: string;
+    provider_name: string;
+  }[];
 };
 
-type ProviderProps = {
-  providers: [
-    {
-      logo_path: string;
-      provider_name: string;
-    }
-  ];
+export type ProviderProps = {
+  providers: {
+    logo_path: string;
+    provider_name: string;
+  }[];
 };
 
 export default Providers;
