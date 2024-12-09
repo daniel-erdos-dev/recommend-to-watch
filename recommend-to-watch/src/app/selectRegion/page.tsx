@@ -2,10 +2,10 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getProviders } from "../../apiLogic/apiHelpers";
-import { getProviderInfo } from "@/redux/reducers/providerReducer";
-import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
+import { getProviderInfo } from "../../redux/reducers/providerReducer";
+import { apiCallEnded, apiCallStarted } from "../../redux/reducers/apiReducer";
 import CountrySelector from "../commonComponents/CountrySelector";
 
 // Render region/country selector and handle store logic regarding that and providers
