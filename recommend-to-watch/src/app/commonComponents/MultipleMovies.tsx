@@ -8,12 +8,12 @@ import {
   getRecommendedMoviesFromCgpt,
   getRecommendedMoviesFromTmdb,
   selectMovie,
-} from "@/redux/reducers/movieReducer";
+} from "../../redux/reducers/movieReducer";
 import {
   getRecommendationsFromChatGPT,
   getRecommendationsFromTMDB,
-} from "@/apiLogic/apiHelpers";
-import { apiCallEnded, apiCallStarted } from "@/redux/reducers/apiReducer";
+} from "../../apiLogic/apiHelpers";
+import { apiCallEnded, apiCallStarted } from "../../redux/reducers/apiReducer";
 
 const MultipleMovies: FC<MultipleMovieProps> = ({ movies }) => {
   const router = useRouter();
