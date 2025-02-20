@@ -2,7 +2,7 @@
 
 Recommend a movie based on your favorite movie(s) and tell you on which streaming/renting/buying platforms you can watch it!
 
-You can check out in action on: [Recommend to watch on Azure](https://witty-beach-04f598103.5.azurestaticapps.net)
+You can check out in action on: [Recommend to Watch](https://recommend-to-watch.vercel.app)
 
 **Work in progress!**
 Things to do for v1:
